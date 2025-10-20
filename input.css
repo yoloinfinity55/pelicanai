@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Custom styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Dark mode prose customization */
+@layer components {
+  .dark .prose {
+    color: rgb(243 244 246);
+  }
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4 {
+    color: rgb(243 244 246);
+  }
+  .dark .prose code {
+    background-color: rgb(55 65 81);
+    color: rgb(243 244 246);
+  }
+  .dark .prose a {
+    color: rgb(96 165 250);
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+<link href="{{ SITEURL }}/theme/css/tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+<header class="bg-white dark:bg-gray-800 shadow">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold"><a href="{{ SITEURL }}/" class="hover:text-blue-500 dark:hover:text-blue-300">{{ SITENAME }}</a></h1>
+    <nav class="space-x-4 flex items-center">
+      {% for name, url in MENUITEMS %}
+        <a href="{{ SITEURL }}{{ url }}" class="hover:text-blue-500 dark:hover:text-blue-300">{{ name }}</a>
+      {% endfor %}
+      <button id="dark-toggle" class="ml-4 px-2 py-1 border rounded hover:bg-gray-200 dark:hover:bg-gray-700">🌙</button>
+    </nav>
+  </div>
+</header>
+{% block hero %}
+<section class="bg-blue-100 dark:bg-blue-900 py-20 text-center">
+  <h2 class="text-4xl md:text-5xl font-bold mb-4">Welcome to {{ SITENAME }}</h2>
+  <p class="text-lg md:text-xl">A modern Pelican blog with TailwindCSS v4, dark mode, SEO, and GitHub Pages.</p>
+</section>
+{% endblock %}
+<main class="container mx-auto px-4 py-8">{% block content %}{% endblock %}</main>
+<footer class="bg-white dark:bg-gray-800 shadow mt-8">
+  <div class="container mx-auto px-4 py-4 text-center text-gray-500 dark:text-gray-400">
+    &copy; 2025 {{ SITENAME }}. Connect:
+    <a href="#" class="ml-2 hover:text-blue-500">Twitter</a> |
+    <a href="#" class="ml-2 hover:text-blue-500">GitHub</a> |
+    <a href="#" class="ml-2 hover:text-blue-500">LinkedIn</a>
+  </div>
+</footer>
+<script>
+const toggle = document.getElementById('dark-toggle');
+const html = document.documentElement;
+toggle.addEventListener('click', () => {
+  html.classList.toggle('dark');
+  localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+  toggle.textContent = html.classList.contains('dark') ? '☀️' : '🌙';
+});
+if(localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  html.classList.add('dark');
+  toggle.textContent = '☀️';
+}
+</script>
+</body>
+</html>

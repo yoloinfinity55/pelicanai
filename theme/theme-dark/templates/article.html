@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
+{% block hero %}{% endblock %}
+{% block content %}
+<article class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded shadow p-8">
+  <header class="mb-8">
+    <span class="text-sm font-semibold text-blue-600 dark:text-blue-400">{{ article.category }}</span>
+    <h1 class="text-4xl font-bold my-2">{{ article.title }}</h1>
+    <p class="text-gray-500 dark:text-gray-400">
+      By {{ article.author }} on {{ article.date.strftime('%B %d, %Y') }}
+    </p>
+    {% if article.tags %}
+    <div class="mt-4 flex gap-2 flex-wrap">
+      {% for tag in article.tags %}
+      <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+  <div class="prose prose-lg dark:prose-invert max-w-none">
+    {{ article.content }}
+  </div>
+</article>
+<div class="max-w-4xl mx-auto mt-8">
+  <a href="{{ SITEURL }}/" class="text-blue-600 dark:text-blue-400 hover:underline">&larr; Back to all posts</a>
+</div>
+{% endblock %}

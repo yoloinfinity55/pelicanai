@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% for article in articles %}
+  <div class="bg-white dark:bg-gray-800 rounded shadow p-4 hover:shadow-lg transition duration-300">
+    <span class="text-sm font-semibold text-blue-600 dark:text-blue-400">{{ article.category }}</span>
+    <h3 class="text-xl font-bold my-2">
+      <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-blue-500 dark:hover:text-blue-300">{{ article.title }}</a>
+    </h3>
+    <p class="text-gray-600 dark:text-gray-300 mb-2">{{ article.summary }}</p>
+    <p class="text-sm text-gray-400 dark:text-gray-500">{{ article.date.strftime('%B %d, %Y') }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
