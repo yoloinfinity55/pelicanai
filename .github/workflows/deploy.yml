@@ -44,8 +44,10 @@ jobs:
       - name: Build CSS
         run: npx --yes @tailwindcss/cli@4.0.0-beta.4 -i input.css -o theme/theme-dark/static/css/tailwind.css --minify
 
-      - name: Build site
+      - name: Build site with Pelican
         run: pelican content -s publishconf.py
+        working-directory: myblog
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
